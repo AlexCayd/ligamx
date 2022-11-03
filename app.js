@@ -1,0 +1,995 @@
+// Constantes 
+const jornada = document.querySelector('#jornada');
+const resultado = document.querySelector('#resultado');
+
+// Objeto
+const datosBusqueda = {
+    jornada: '',
+} 
+
+// Eventos
+document.addEventListener('DOMContentLoaded', () => {
+    mostrarPartidos(partidos); 
+})
+
+// EventListeners para el select 
+jornada.addEventListener('change', e => {
+    datosBusqueda.jornada = parseInt(e.target.value);
+    filtrarPartidos();
+})
+
+// Funciones
+function mostrarPartidos (partidos) {
+    limpiarHTML();
+    partidos.forEach(partido => {
+        const {jornada, equipo1, equipo2} = partido;
+        const partidoHTML = document.createElement('P');
+        partidoHTML.classList.add('partidos-resultado');
+        partidoHTML.textContent = `
+        ${equipo1} VS ${equipo2} - Jornada: ${jornada}
+        `;
+
+        // Insertarlo en HTML
+        resultado.appendChild(partidoHTML);
+    })
+}
+
+// Función que filtra la jornada
+function filtrarPartidos() {
+    limpiarHTML();
+    const resultado = partidos.filter(filtrarJornada);
+    if (resultado.length) {
+        mostrarPartidos(resultado);
+    } else {
+        noResultado();
+    }
+}
+
+// Error
+function noResultado() {
+    limpiarHTML();
+    const noResultado = document.createElement('DIV');
+    noResultado.classList.add('error');
+    noResultado.textContent = 'No hay partidos para esa jornada';
+    resultado.appendChild(noResultado);
+}
+
+
+// Filtra las jornadas
+function filtrarJornada(partido) {
+    const { jornada } = datosBusqueda;
+    if (jornada) {
+        return partido.jornada === jornada;
+    }
+    return partidos;
+}
+
+// Limpiar HTML
+function limpiarHTML() {
+    while(resultado.firstChild) {
+        resultado.removeChild(resultado.firstChild);
+    }
+}
+
+
+
+const partidos = [
+    {
+        id: 1,
+        equipo1: "Querétaro",
+        equipo2: "América",
+        jornada: 1
+    },
+    {
+        id: 2,
+        equipo1: "Necaxa",
+        equipo2: "Santos",
+        jornada: 1
+    },
+    {
+        id: 3,
+        equipo1: "FC Juárez",
+        equipo2: "Toluca",
+        jornada: 1
+    },
+    {
+        id: 4,
+        equipo1: "Pachuca",
+        equipo2: "León",
+        jornada: 1
+    },
+    {
+        id: 5,
+        equipo1: "Chivas",
+        equipo2: "Atlético San Luis",
+        jornada: 1
+    },
+    {
+        id: 6,
+        equipo1: "Pumas",
+        equipo2: "Atlas",
+        jornada: 1
+    },
+    {
+        id: 7,
+        equipo1: "Monterrey",
+        equipo2: "Puebla",
+        jornada: 1
+    },
+    {
+        id: 8,
+        equipo1: "Tijuana",
+        equipo2: "Tigres",
+        jornada: 1
+    },
+    {
+        id: 9,
+        equipo1: "Cruz Azul",
+        equipo2: "Mazatlán",
+        jornada: 1
+    },
+    {
+        id: 10,
+        equipo1: "Mazatlán",
+        equipo2: "Pachuca",
+        jornada: 2
+    },
+    {
+        id: 11,
+        equipo1: "Puebla",
+        equipo2: "Chivas",
+        jornada: 2
+    },
+    {
+        id: 12,
+        equipo1: "América",
+        equipo2: "Necaxa",
+        jornada: 2
+    },
+    {
+        id: 13,
+        equipo1: "Monterrey",
+        equipo2: "Pumas",
+        jornada: 2
+    },
+    {
+        id: 14,
+        equipo1: "Atlas",
+        equipo2: "FC Juárez",
+        jornada: 2
+    },
+    {
+        id: 15,
+        equipo1: "Toluca",
+        equipo2: "Tigres",
+        jornada: 2
+    },
+    {
+        id: 16,
+        equipo1: "León",
+        equipo2: "Tijuana",
+        jornada: 2
+    },
+    {
+        id: 17,
+        equipo1: "Santos",
+        equipo2: "Cruz Azul",
+        jornada: 2
+    },
+    {
+        id: 18,
+        equipo1: "Atlético San Luis",
+        equipo2: "Querétaro",
+        jornada: 2
+    },
+    {
+        id: 19,
+        equipo1: "Querétaro",
+        equipo2: "León",
+        jornada: 3
+    },
+    {
+        id: 20,
+        equipo1: "Mazatlán",
+        equipo2: "Monterrey",
+        jornada: 3
+    },
+    {
+        id: 21,
+        equipo1: "Necaxa",
+        equipo2: "Cruz Azul",
+        jornada: 3
+    },
+    {
+        id: 22,
+        equipo1: "Tijuana",
+        equipo2: "Toluca",
+        jornada: 3
+    },
+    {
+        id: 23,
+        equipo1: "América",
+        equipo2: "Puebla",
+        jornada: 3
+    },
+    {
+        id: 24,
+        equipo1: "Tigres",
+        equipo2: "Santos",
+        jornada: 3
+    },
+    {
+        id: 25,
+        equipo1: "Pumas",
+        equipo2: "Atlético San Luis",
+        jornada: 3
+    },
+    {
+        id: 26,
+        equipo1: "Chivas",
+        equipo2: "FC Juárez",
+        jornada: 3
+    },
+    {
+        id: 27,
+        equipo1: "Pachuca",
+        equipo2: "Atlas",
+        jornada: 3
+    },
+    {
+        id: 28,
+        equipo1: "Atlético San Luis",
+        equipo2: "Necaxa",
+        jornada: 4
+    },
+    {
+        id: 29,
+        equipo1: "Puebla",
+        equipo2: "Tigres",
+        jornada: 4
+    },
+    {
+        id: 30,
+        equipo1: "FC Juárez",
+        equipo2: "Tijuana",
+        jornada: 4
+    },
+    {
+        id: 31,
+        equipo1: "León",
+        equipo2: "Mazatlán",
+        jornada: 4
+    },
+    {
+        id: 32,
+        equipo1: "Monterrey",
+        equipo2: "Pachuca",
+        jornada: 4
+    },
+    {
+        id: 33,
+        equipo1: "Cruz Azul",
+        equipo2: "Toluca",
+        jornada: 4
+    },
+    {
+        id: 34,
+        equipo1: "Pumas",
+        equipo2: "Querétaro",
+        jornada: 4
+    },
+    {
+        id: 35,
+        equipo1: "Santos",
+        equipo2: "Chivas",
+        jornada: 4
+    },
+    {
+        id: 36,
+        equipo1: "Atlas",
+        equipo2: "América",
+        jornada: 4
+    },
+    {
+        id: 37,
+        equipo1: "Tigres",
+        equipo2: "Querétaro",
+        jornada: 5
+    },
+    {
+        id: 38,
+        equipo1: "Tijuana",
+        equipo2: "Puebla",
+        jornada: 5
+    },
+    {
+        id: 39,
+        equipo1: "Necaxa",
+        equipo2: "Pumas",
+        jornada: 5
+    },
+    {
+        id: 40,
+        equipo1: "Toluca",
+        equipo2: "Mazatlán",
+        jornada: 5
+    },
+    {
+        id: 41,
+        equipo1: "Cruz Azul",
+        equipo2: "Monterrey",
+        jornada: 5
+    },
+    {
+        id: 42,
+        equipo1: "Santos",
+        equipo2: "Atlas",
+        jornada: 5
+    },
+    {
+        id: 43,
+        equipo1: "Chivas",
+        equipo2: "León",
+        jornada: 5
+    },
+    {
+        id: 44,
+        equipo1: "FC Juárez",
+        equipo2: "América",
+        jornada: 5
+    },
+    {
+        id: 45,
+        equipo1: "Pachuca",
+        equipo2: "Atlético San Luis",
+        jornada: 5
+    },
+    {
+        id: 46,
+        equipo1: "Mazatlán",
+        equipo2: "Tigres",
+        jornada: 6
+    },
+    {
+        id: 47,
+        equipo1: "León",
+        equipo2: "Santos",
+        jornada: 6
+    },
+    {
+        id: 48,
+        equipo1: "Atlético San Luis",
+        equipo2: "Cruz Azul",
+        jornada: 6
+    },
+    {
+        id: 49,
+        equipo1: "Monterrey",
+        equipo2: "Chivas",
+        jornada: 6
+    },
+    {
+        id: 50,
+        equipo1: "Pumas",
+        equipo2: "Puebla",
+        jornada: 6
+    },
+    {
+        id: 51,
+        equipo1: "Atlas",
+        equipo2: "Toluca",
+        jornada: 6
+    },
+    {
+        id: 52,
+        equipo1: "Necaxa",
+        equipo2: "FC Juárez",
+        jornada: 6
+    },
+    {
+        id: 53,
+        equipo1: "Querétaro",
+        equipo2: "Pachuca",
+        jornada: 6
+    },
+    {
+        id: 54,
+        equipo1: "América",
+        equipo2: "Tijuana",
+        jornada: 6
+    },
+    {
+        id: 55,
+        equipo1: "Puebla",
+        equipo2: "Querétaro",
+        jornada: 7
+    },
+    {
+        id: 56,
+        equipo1: "Mazatlán",
+        equipo2: "Atlético San Luis",
+        jornada: 7
+    },
+    {
+        id: 57,
+        equipo1: "Tijuana",
+        equipo2: "Monterrey",
+        jornada: 7
+    },
+    {
+        id: 58,
+        equipo1: "Tigres",
+        equipo2: "Atlas",
+        jornada: 7
+    },
+    {
+        id: 59,
+        equipo1: "León",
+        equipo2: "América",
+        jornada: 7
+    },
+    {
+        id: 60,
+        equipo1: "Toluca",
+        equipo2: "Pumas",
+        jornada: 7
+    },
+    {
+        id: 61,
+        equipo1: "Chivas",
+        equipo2: "Necaxa",
+        jornada: 7
+    },
+    {
+        id: 62,
+        equipo1: "Santos",
+        equipo2: "FC Juárez",
+        jornada: 7
+    },
+    {
+        id: 63,
+        equipo1: "Cruz Azul",
+        equipo2: "Pachuca",
+        jornada: 7
+    },
+    {
+        id: 64,
+        equipo1: "Puebla",
+        equipo2: "Atlético San Luis",
+        jornada: 8
+    },
+    {
+        id: 65,
+        equipo1: "Tijuana",
+        equipo2: "Santos",
+        jornada: 8
+    },
+    {
+        id: 66,
+        equipo1: "FC Juárez",
+        equipo2: "Cruz Azul",
+        jornada: 8
+    },
+    {
+        id: 67,
+        equipo1: "Tigres",
+        equipo2: "León",
+        jornada: 8
+    },
+    {
+        id: 68,
+        equipo1: "América",
+        equipo2: "Mazatlán",
+        jornada: 8
+    },
+    {
+        id: 69,
+        equipo1: "Atlas",
+        equipo2: "Monterrey",
+        jornada: 8
+    },
+    {
+        id: 70,
+        equipo1: "Querétaro",
+        equipo2: "Necaxa",
+        jornada: 8
+    },
+    {
+        id: 71,
+        equipo1: "Pumas",
+        equipo2: "Chivas",
+        jornada: 8
+    },
+    {
+        id: 72,
+        equipo1: "Pachuca",
+        equipo2: "Toluca",
+        jornada: 8
+    },
+    {
+        id: 73,
+        equipo1: "Atlético San Luis",
+        equipo2: "Tijuana",
+        jornada: 9
+    },
+    {
+        id: 74,
+        equipo1: "Necaxa",
+        equipo2: "Atlas",
+        jornada: 9
+    },
+    {
+        id: 75,
+        equipo1: "Mazatlán",
+        equipo2: "Pumas",
+        jornada: 9
+    },
+    {
+        id: 76,
+        equipo1: "Toluca",
+        equipo2: "América",
+        jornada: 9
+    },
+    {
+        id: 77,
+        equipo1: "Chivas",
+        equipo2: "Pachuca",
+        jornada: 9
+    },
+    {
+        id: 78,
+        equipo1: "León",
+        equipo2: "FC Juárez",
+        jornada: 9
+    },
+    {
+        id: 79,
+        equipo1: "Monterrey",
+        equipo2: "Tigres",
+        jornada: 9
+    },
+    {
+        id: 80,
+        equipo1: "Cruz Azul",
+        equipo2: "Querétaro",
+        jornada: 9
+    },
+    {
+        id: 81,
+        equipo1: "Santos",
+        equipo2: "Puebla",
+        jornada: 9
+    },
+    {
+        id: 82,
+        equipo1: "Pachuca",
+        equipo2: "Necaxa",
+        jornada: 10
+    },
+    {
+        id: 83,
+        equipo1: "Puebla",
+        equipo2: "Cruz Azul",
+        jornada: 10
+    },
+    {
+        id: 84,
+        equipo1: "FC Juárez",
+        equipo2: "Querétaro",
+        jornada: 10
+    },
+    {
+        id: 85,
+        equipo1: "Tijuana",
+        equipo2: "Mazatlán",
+        jornada: 10
+    },
+    {
+        id: 86,
+        equipo1: "Tigres",
+        equipo2: "Pumas",
+        jornada: 10
+    },
+    {
+        id: 87,
+        equipo1: "América",
+        equipo2: "Chivas",
+        jornada: 10
+    },
+    {
+        id: 88,
+        equipo1: "Toluca",
+        equipo2: "Atlético San Luis",
+        jornada: 10
+    },
+    {
+        id: 89,
+        equipo1: "Atlas",
+        equipo2: "León",
+        jornada: 10
+    },
+    {
+        id: 90,
+        equipo1: "Santos",
+        equipo2: "Monterrey",
+        jornada: 10
+    },
+    {
+        id: 91,
+        equipo1: "Monterrey",
+        equipo2: "Toluca",
+        jornada: 11
+    },
+    {
+        id: 92,
+        equipo1: "Atlas",
+        equipo2: "Puebla",
+        jornada: 11
+    },
+    {
+        id: 93,
+        equipo1: "Pachuca",
+        equipo2: "América",
+        jornada: 11
+    },
+    {
+        id: 94,
+        equipo1: "Mazatlán",
+        equipo2: "FC Juárez",
+        jornada: 11
+    },
+    {
+        id: 95,
+        equipo1: "Necaxa",
+        equipo2: "Tijuana",
+        jornada: 11
+    },
+    {
+        id: 96,
+        equipo1: "Querétaro",
+        equipo2: "Chivas",
+        jornada: 11
+    },
+    {
+        id: 97,
+        equipo1: "Atlético San Luis",
+        equipo2: "Tigres",
+        jornada: 11
+    },
+    {
+        id: 98,
+        equipo1: "Cruz Azul",
+        equipo2: "León",
+        jornada: 11
+    },
+    {
+        id: 99,
+        equipo1: "Pumas",
+        equipo2: "Santos",
+        jornada: 11
+    },
+    {
+        id: 100,
+        equipo1: "Puebla",
+        equipo2: "Pachuca",
+        jornada: 12
+    },
+    {
+        id: 101,
+        equipo1: "FC Juárez",
+        equipo2: "Monterrey",
+        jornada: 12
+    },
+    {
+        id: 102,
+        equipo1: "Chivas",
+        equipo2: "Atlas",
+        jornada: 12
+    },
+    {
+        id: 103,
+        equipo1: "América",
+        equipo2: "Atlas",
+        jornada: 12
+    },
+    {
+        id: 104,
+        equipo1: "Toluca",
+        equipo2: "Querétaro",
+        jornada: 12
+    },
+    {
+        id: 105,
+        equipo1: "León",
+        equipo2: "Atlético San Luis",
+        jornada: 12
+    },
+    {
+        id: 106,
+        equipo1: "Santos",
+        equipo2: "Mazatlán",
+        jornada: 12
+    },
+    {
+        id: 107,
+        equipo1: "Puebla",
+        equipo2: "Pachuca",
+        jornada: 12
+    },
+    {
+        id: 108,
+        equipo1: "Tigres",
+        equipo2: "Necaxa",
+        jornada: 12
+    },
+    {
+        id: 109,
+        equipo1: "Querétaro",
+        equipo2: "Tijuana",
+        jornada: 13
+    },
+    {
+        id: 110,
+        equipo1: "Necaxa",
+        equipo2: "Puebla",
+        jornada: 13
+    },
+    {
+        id: 111,
+        equipo1: "Mazatlán",
+        equipo2: "Atlas",
+        jornada: 13
+    },
+    {
+        id: 112,
+        equipo1: "Pachuca",
+        equipo2: "Santos",
+        jornada: 13
+    },
+    {
+        id: 113,
+        equipo1: "Atlético San Luis",
+        equipo2: "América",
+        jornada: 13
+    },
+    {
+        id: 114,
+        equipo1: "Cruz Azul",
+        equipo2: "Tigres",
+        jornada: 13
+    },
+    {
+        id: 115,
+        equipo1: "Pumas",
+        equipo2: "FC Juárez",
+        jornada: 13
+    },
+    {
+        id: 116,
+        equipo1: "Monterrey",
+        equipo2: "León",
+        jornada: 13
+    },
+    {
+        id: 117,
+        equipo1: "Chivas",
+        equipo2: "Tolucas",
+        jornada: 13
+    },
+    {
+        id: 118,
+        equipo1: "FC Juárez",
+        equipo2: "Atlético San Luis",
+        jornada: 14
+    },
+    {
+        id: 119,
+        equipo1: "Puebla",
+        equipo2: "Mazatlán",
+        jornada: 14
+    },
+    {
+        id: 120,
+        equipo1: "América",
+        equipo2: "Santos",
+        jornada: 14
+    },
+    {
+        id: 121,
+        equipo1: "Atlas",
+        equipo2: "Cruz Azul",
+        jornada: 14
+    },
+    {
+        id: 122,
+        equipo1: "Querétaro",
+        equipo2: "Monterrey",
+        jornada: 14
+    },
+    {
+        id: 123,
+        equipo1: "Toluca",
+        equipo2: "Necaxa",
+        jornada: 14
+    },
+    {
+        id: 124,
+        equipo1: "León",
+        equipo2: "Pumas",
+        jornada: 14
+    },
+    {
+        id: 125,
+        equipo1: "Tigres",
+        equipo2: "Pachuca",
+        jornada: 14
+    },
+    {
+        id: 126,
+        equipo1: "Tijuana",
+        equipo2: "Chivas",
+        jornada: 14
+    },
+    {
+        id: 127,
+        equipo1: "Mazatlán",
+        equipo2: "Querétaro",
+        jornada: 15
+    },
+    {
+        id: 128,
+        equipo1: "América",
+        equipo2: "Tigres",
+        jornada: 15
+    },
+    {
+        id: 129,
+        equipo1: "Chivas",
+        equipo2: "Cruz Azul",
+        jornada: 15
+    },
+    {
+        id: 130,
+        equipo1: "Pumas",
+        equipo2: "Tijuana",
+        jornada: 15
+    },
+    {
+        id: 131,
+        equipo1: "Puebla",
+        equipo2: "León",
+        jornada: 15
+    },
+    {
+        id: 132,
+        equipo1: "Monterrey",
+        equipo2: "Necaxa",
+        jornada: 15
+    },
+    {
+        id: 133,
+        equipo1: "Santos",
+        equipo2: "Toluca",
+        jornada: 15
+    },
+    {
+        id: 134,
+        equipo1: "Atlético San Luis",
+        equipo2: "Atlas",
+        jornada: 15
+    },
+    {
+        id: 135,
+        equipo1: "Pachuca",
+        equipo2: "FC Juárez",
+        jornada: 15
+    },
+    {
+        id: 136,
+        equipo1: "Atlas",
+        equipo2: "Tijuana",
+        jornada: 16
+    },
+    {
+        id: 137,
+        equipo1: "Necaxa",
+        equipo2: "Mazatlán",
+        jornada: 16
+    },
+    {
+        id: 138,
+        equipo1: "FC Juárez",
+        equipo2: "Puebla",
+        jornada: 16
+    },
+    {
+        id: 139,
+        equipo1: "Querétaro",
+        equipo2: "Santos",
+        jornada: 16
+    },
+    {
+        id: 140,
+        equipo1: "Pachuca",
+        equipo2: "Pumas",
+        jornada: 16
+    },
+    {
+        id: 141,
+        equipo1: "Tigres",
+        equipo2: "Chivas",
+        jornada: 16
+    },
+    {
+        id: 142,
+        equipo1: "Toluca",
+        equipo2: "León",
+        jornada: 16
+    },
+    {
+        id: 143,
+        equipo1: "Cruz Azul",
+        equipo2: "América",
+        jornada: 16
+    },
+    {
+        id: 144,
+        equipo1: "Atlético San Luis",
+        equipo2: "Monterrey",
+        jornada: 16
+    },
+    {
+        id: 145,
+        equipo1: "Atlas",
+        equipo2: "Querétaro",
+        jornada: 17
+    },
+    {
+        id: 146,
+        equipo1: "Puebla",
+        equipo2: "Toluca",
+        jornada: 17
+    },
+    {
+        id: 147,
+        equipo1: "Mazatlán",
+        equipo2: "Chivas",
+        jornada: 17
+    },
+    {
+        id: 148,
+        equipo1: "León",
+        equipo2: "Necaxa",
+        jornada: 17
+    },
+    {
+        id: 149,
+        equipo1: "América",
+        equipo2: "Monterrey",
+        jornada: 17
+    },
+    {
+        id: 150,
+        equipo1: "Tigres",
+        equipo2: "FC Juárez",
+        jornada: 17
+    },
+    {
+        id: 151,
+        equipo1: "Tijuana",
+        equipo2: "Pachuca",
+        jornada: 17
+    },
+    {
+        id: 152,
+        equipo1: "Pumas",
+        equipo2: "Cruz Azul",
+        jornada: 17
+    },
+    {
+        id: 153,
+        equipo1: "Santos",
+        equipo2: "Atlético San Luis",
+        jornada: 17
+    }
+]
